@@ -1,0 +1,9 @@
+#!/bin/sh
+
+envid=$(case $1 in 
+"ship-test1") "mesos://10.135.105.159/sparkmesos/drive" ;;
+"ship-test2") "mesos://10.196.105.159/sparkmesos/drive" ;;
+"ship-stage") "mesos://10.137.105.159/sparkmesos/drive" ;;
+esac)
+
+./spark-2.3.1-bin-hadoop2.7/bin/spark-submit --master $envid --deploy-mode cluster --verbose --driver-memory 2g --executor-memory 2g --conf spark.mesos.executor.docker.image=tst2-registry.nowlab.tstsh.tstrccl.com:10104/sparkmesos:1.3.2 --conf spark.cores.max=8 --conf spark.executor.cores=4 --conf spark.mesos.executor.home=/opt/spark --conf spark.executorEnv.save=true --conf spark.executorEnv.fetchSize=5000 --conf spark.executorEnv.MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so --conf spark.driverEnv.MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so --conf spark.driver.extraClassPath=/opt/spark/external/com.datastax.spark-spark-cassandra-connector_2.11-2.3.1.jar:/opt/spark/external/aws-java-sdk-1.11.386.jar:/opt/spark/external/aws-java-sdk-core-1.11.386.jar:/opt/spark/external/aws-java-sdk-kms-1.11.386.jar:/opt/spark/external/aws-java-sdk-s3-1.11.386.jar:/opt/spark/external/hadoop-aws-2.8.2.jar:/opt/spark/external/httpclient-4.5.6.jar:/opt/spark/external/joda-time-2.10.jar --conf spark.executor.extraClassPath=/opt/spark/external/com.datastax.spark-spark-cassandra-connector_2.11-2.3.1.jar:/opt/spark/external/aws-java-sdk-1.11.386.jar:/opt/spark/external/aws-java-sdk-core-1.11.386.jar:/opt/spark/external/aws-java-sdk-kms-1.11.386.jar:/opt/spark/external/aws-java-sdk-s3-1.11.386.jar:/opt/spark/external/hadoop-aws-2.8.2.jar:/opt/spark/external/httpclient-4.5.6.jar:/opt/spark/external/joda-time-2.10.jar --class com.rccl.Reports /spark-integration_full.jar cloud-stage 10.17.134.53 8042 ga_read_user guest_bookings p+!#jEsVhzXyOJLZ\\\`% 10.14.31.120 14729 kafka_user ExcaliburDB 8O5R2667loTU0wnSQLs1 sshminio.marathon.l4lb.thisdcos.directory:9000 ga_read_user p+!#jEsVhzXyOJLZ\\\`% 1
