@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Spark-Submit') {
             steps {
-		echo "Spark Submit on "
+		echo "Spark Submit on $EnvID"
 		sh './scripts/setup.sh'
             }
         }
