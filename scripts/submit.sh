@@ -1,6 +1,6 @@
 #!/bin/sh
 
-envid=$(case $1 in 
+envid=$(case $EnvID in 
 "ship-test1") "mesos://10.135.105.159/sparkmesos/drive" ;;
 "ship-test2") "mesos://10.196.105.159/sparkmesos/drive" ;;
 "ship-stage") "mesos://10.137.105.159/sparkmesos/drive" ;;
